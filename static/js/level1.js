@@ -21,16 +21,6 @@ const myMap = L.map("map", {
 //   const dataUrl= "static/data/qfaults_latest_quaternary.geojson";
   const dataUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
 
-//   d3.json(dataUrl).then(function(data){
-    
-//       const features = data.features;
-//       const  mag = features.map( feature =>{
-//           return L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).addTo(myMap);
-
-//       });
-//     //   console.log(features.properties);
-//   })
-
   d3.json(dataUrl).then(function(data){
     
     const features = data.features;
@@ -41,38 +31,42 @@ const myMap = L.map("map", {
         //convert timestamp into readable date and time 
         const newTime = new Date(time);
         const significance = feature.properties.sig
-        function getMinSig(){
-          const minSig = feature.properties.reduce((min, p) => p.sig < min ? p.sig : min,
-          feature.properties[0].sig);
-          // console.log(minSig);
-        }
-        // console.log(minSig);
-        // console.log(Math.max(significance));
-        //  console.log(significance);
-         const maxSig = Math.max.apply(null,[feature.properties.sig]);
-        // console.log(maxSig);
-        // console.log(newTime);
-        // features.forEach
-        // let color = ''
-        // if 
-
         L.circle([feature.geometry.coordinates[1], feature.geometry.coordinates[0]],{
-        fillOpacity:0.75,
-        color:"pink",
-        fillColor:"pink",
+        fillOpacity:0.95,
+        color:"white",
+        fillColor: getColor(significance),
         radius: magnitude * 5000
 
         }).bindPopup(`<h3>Earthquake: ${place}</h3> <hr>
         <h3>Time: ${newTime}</h3> <hr><h3>Magnitude: ${magnitude}</h3> <hr> 
         <h3>Significance: ${significance}</h3>`).addTo(myMap)
     });
-  //   console.log(features.properties);
+const legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (myMap) {
+
+    const div = L.DomUtil.create('div', 'info legend'),
+        significance= [0, 250, 500, 750, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < significance.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(significance[i] + 1) + '"></i> ' +
+            significance[i] + (significance[i + 1] ? '&ndash;' + significance[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(myMap);
+
 })
 
-//   L.cirlce(features.geometry.coordinates,{
-//       fillOpacity:0.75,
-//       color:"white",
-//       radius:features.properties.mag * 1
-
-
-//   }).addTo(myMap);
+function getColor(c) {
+  return c > 1000 ? '#800026' :
+         c > 750  ? '#BD0026' :
+         c > 500  ? '#E31A1C' :
+         c > 250  ? '#FC4E2A' :
+                    '#FFFFFF';
+}
