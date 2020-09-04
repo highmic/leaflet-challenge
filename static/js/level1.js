@@ -10,15 +10,10 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
-  id: "mapbox/streets-v11",
+  id: "mapbox/dark-v10",
   accessToken: API_KEY
 }).addTo(myMap);
 
-// function markerSize(magnitude){
-//     return magnitude
-// }
-// Use this link to get the geojson data.
-//   const dataUrl= "static/data/qfaults_latest_quaternary.geojson";
 const dataUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
 
 d3.json(dataUrl).then(function (data) {
@@ -31,44 +26,38 @@ d3.json(dataUrl).then(function (data) {
     //convert timestamp into readable date and time 
     const newTime = new Date(time);
     const significance = feature.properties.sig
+    //add circle markers to map based on location coordinates 
     L.circle([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
       fillOpacity: 0.95,
-      color: "white",
+      color: getColor(significance),
       fillColor: getColor(significance),
-      radius: magnitude * 5000
+      radius: magnitude * 10000
 
     }).bindPopup(`<h3>Earthquake: ${place}</h3> <hr>
         <h3>Time: ${newTime}</h3> <hr><h3>Magnitude: ${magnitude}</h3> <hr> 
         <h3>Significance: ${significance}</h3>`).addTo(myMap)
   });
+  //create legend 
   const legend = L.control({ position: 'bottomright' });
-
   legend.onAdd = function (myMap) {
-
     const div = L.DomUtil.create('div', 'info legend');
-      labels = ['<strong>EQ Significance</strong>'],
-      // div.innerHTML = labels.join('<br>'),
+    labels = ['<strong>EQ Significance</strong>'],
       significance = [0, 250, 500, 750, 1000];
-    // labels = ['<strong>EQ Significance</strong>'];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    
+    // loop through earthquake significance intervals and generate a label with a colored square for each interval
     for (var i = 0; i < significance.length; i++) {
-     
       div.innerHTML +=
-      labels.push(
-        '<i style="background:' + getColor(significance[i] + 1) + '"></i> ' +
-        significance[i] + (significance[i + 1] ? '&ndash;' + significance[i + 1] + '<br>' : '+'));
-       
+        labels.push(
+          '<i style="background:' + getColor(significance[i] + 1) + '"></i> ' +
+          significance[i] + (significance[i + 1] ? '&ndash;' + significance[i + 1] + '<br>' : '+'));
     }
-      div.innerHTML = labels.join('<br>');
+    div.innerHTML = labels.join('<br>');
     return div;
   };
 
   legend.addTo(myMap);
-
 })
 
+//create function to add color based on earthquake significance 
 function getColor(c) {
   return c > 1000 ? '#800026' :
     c > 750 ? '#BD0026' :
