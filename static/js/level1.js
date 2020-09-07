@@ -31,7 +31,7 @@ d3.json(dataUrl).then(function (data) {
       fillOpacity: 0.95,
       color: getColor(significance),
       fillColor: getColor(significance),
-      radius: magnitude * 10000
+      radius: magnitude**3 * 1000
 
     }).bindPopup(`<h3>Earthquake: ${place}</h3> <hr>
         <h3>Time: ${newTime}</h3> <hr><h3>Magnitude: ${magnitude}</h3> <hr> 
