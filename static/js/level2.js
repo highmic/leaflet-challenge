@@ -74,16 +74,15 @@ d3.json(faultlineData).then(data => {
 
     L.geoJson(plottedSpliprates, {
         valueProperty: 'slip_rate',
-        style: function (feature) {
-            return {
-                weight = 4,
-                color: 'green'
-            },
-                onEachFeature: function(feature, layer) {
+        style: function (feature) 
+            {
+                return strokeWeight(feature.properties.slip_rate);
+            }
+            // onEachFeature: function(feature, layer) {
 
-                    layer.bindPopup(`<h3>Fault: ${fault}</h3> <hr><h3>Slip Rate: ${slipRates}</h3> <hr>
-            <h3>Slip Rate:`)
-                }
+            //         layer.bindPopup(`<h3>Fault: ${fault}</h3> <hr><h3>Slip Rate: ${slipRates}</h3> <hr>
+            // <h3>Slip Rate:`)
+                // }
         }).addTo(faultlineMap);
     // })
 });
@@ -92,7 +91,17 @@ d3.json(faultlineData).then(data => {
 function strokeWeight(slip_rate){
     let weight;
     switch(slip_rate){
-        
+        case 'Greater than 5.0 mm/yr':
+            weight = 5;
+            color = 'green';
+            break;
+        case 'Between 1.0 and 5.0 mm/yr':
+            weight = 3;
+            color = 'green'
+    }
+    return{
+        'weight': weight,
+        'color': color
     }
 }
 // Create base layers
@@ -137,7 +146,7 @@ const overlayMaps = {
 const myMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 5,
-    layers: [darkmap, earthquakeMap]
+    layers: [darkmap, earthquakeMap,faultlineMap]
 });
 
 // Pass our map layers into our layer control
