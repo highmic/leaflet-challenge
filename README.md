@@ -1,8 +1,9 @@
 # leaflet-challenge
-files for leaflet homework 
+
 
 
 Level 1: Basic Visualization:
+
 
 The USGS provides earthquake data in a number of different formats, updated every 5 minutes.
 Use the following dataset to plot earthquakes on your map,
