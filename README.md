@@ -23,8 +23,6 @@ Include popups that provide additional information about the earthquake when a m
 Create a legend that will provide context for your map data as shown in the map above
 
 
-Your visualization should look something like the map above.
-
 The JavaScript code solution for level 1 is level1.js
 
 
