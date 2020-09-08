@@ -24,7 +24,7 @@ Create a legend that will provide context for your map data as shown in the map 
 
 Your visualization should look something like the map above.
 
-The JavaScript code solution for level one is level1.js
+The JavaScript code solution for level 1 is level1.js
 
 
 
@@ -54,4 +54,4 @@ Add layer controls to our map as shown in map above.
 Include popups that provide additional information about the fault when a fault-line is clicked.
 
 
-The JavaScript code solution for level one is level2.js
+The JavaScript code solution for level 2 is level2.js
