@@ -1,6 +1,5 @@
-
-
-// Define arrays to hold created earthquake and faultline markers
+//Level 2: More Data (Optional)
+// Define layer group variables to hold created earthquake and faultline markers
 const earthquakeMap = new L.layerGroup
 const faultlineMap = new L.layerGroup
 
@@ -16,7 +15,7 @@ d3.json(dataUrl).then(function (data) {
         //convert timestamp into readable date and time 
         const newTime = new Date(time);
         const significance = feature.properties.sig
-        //add circle markers to map based on location coordinates 
+        //add circle markers to map bylocation coordinates 
 
         L.circle([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             fillOpacity: 0.95,
@@ -56,33 +55,25 @@ function getColor(c) {
                 c > 250 ? '#FC4E2A' :
                     '#FFFFFF';
 }
-
+//pass on the faultline data to a variable
 const faultlineData = 'static/data/qfaults_latest_quaternary.geojson';
-
+//get a handle on the faultline data 
 d3.json(faultlineData).then(data => {
     const faultFeatures = data.features;
     // console.log(faultFeatures); //39200records 
     //filter data to required slip rate values 
-
     const plottedSpliprates = faultFeatures.filter(data => data.properties.slip_rate == 'Greater than 5.0 mm/yr'
         || data.properties.slip_rate == 'Between 1.0 and 5.0 mm/yr');
-    // const slipRatesData = plottedSpliprates.map(feature => {
-    //     const slipRates = feature.properties.slip_rate
-    //     const fault = feature.properties.fault_name
-    // console.log(fault);
-    // console.log(plottedSpliprates); //18799 records 
-
     L.geoJson(plottedSpliprates, {
-        // valueProperty: 'slip',
         style: function (feature) {
             return strokeWeight(feature.properties.slip_rate);
         },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(`<h3>Fault: ${feature.properties.fault_name}</h3> <hr>
+        onEachFeature: function(feature,layer){  //function to be called once for each created feature
+
+    layer.bindPopup(`<h3>Fault: ${feature.properties.fault_name}</h3> <hr>
         <h3>Slip Rate: ${feature.properties.slip_rate}</h3>`)
-        }
-    }).addTo(faultlineMap);
-    // })
+    }
+    }).addTo(faultlineMap)
 });
 
 //craete function to add higher stroke-weight to lines with higher slip_rate
@@ -104,7 +95,6 @@ function strokeWeight(style) {
 }
 // Create base layers
 
-// Streetmap Layer
 const streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -120,12 +110,6 @@ const darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/
     id: "dark-v10",
     accessToken: API_KEY
 });
-
-// Create two separate layer groups: one for cities and one for states
-// const earthquakeMap = new L.layerGroup
-// const faultlineMap = new L.layerGroup
-// const earthquakeMap = L.layerGroup(earthquakeMarkers);
-// const faultlineMap = L.layerGroup(faultlineMarkers);
 
 
 // Create a baseMaps object
@@ -147,7 +131,7 @@ const myMap = L.map("map", {
     layers: [darkmap, earthquakeMap, faultlineMap]
 });
 
-// Pass our map layers into our layer control
+// Pass map layers into layer control
 // Add the layer control to the map
 L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
