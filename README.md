@@ -10,7 +10,7 @@ The primary objective of this homework is to demostrate data visualization skill
 *  Level 2 or More Data: Provided in the static/data folder
 
 ## Level 1 or Basic Visualization
-*  I plotted Leaflet map that with all level 1 data sets based on their longitude and latitude
+*  I plotted a Leaflet map with the level 1 data sets based on their longitude and latitude
 *  Markers reflect magnitude of earthquake in their size, and significance of the earthquake in their color with eathquakes with higher magnitude larger in size and those with higher significance darker in color
 *  Added Pop-ups which provided additional information when a marker is clicked and included a legend that provided more context for the map data
 
