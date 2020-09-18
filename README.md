@@ -2,8 +2,8 @@
 The primary objective of this homework is to demostrate data visualization skills with eathquake data from United States Geological Survey USGS 
 
 ## Languages and Tools
-1. Leaflet JavaScript
-2. HTML
+*  Leaflet JavaScript
+*  HTML
 
 ## Requirements
 1. Basic visualization with 
