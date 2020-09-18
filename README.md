@@ -27,4 +27,4 @@ The primary objective of this homework is to demostrate data visualization skill
 
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_dark_popup.png "Level2 Visualization DarkMap")
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_street.png "Level2 Visualization StreetMap")
-![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_faultlineOnly.png "Level2 Visualization faultOnly")
+![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_faultline_popup.png "Level2 Visualization faultOnly")
