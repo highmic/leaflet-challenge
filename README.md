@@ -6,7 +6,7 @@ The primary objective of this homework is to demostrate data visualization skill
 *  HTML
 
 ## Requirements
-1. Basic Level: 
+1. Basic Level 
 ..*  Craete Leaflet maps that plots all of level 1 data sets based on their longitude and latitude  
 
 ## Data Sources 
