@@ -22,6 +22,7 @@ The primary objective of this homework is to demostrate data visualization skill
 *  I plotted level 2 dataset on the map created in level 1. I added only fault-lines with slip_rate values 'Greater than 5.0mm/yr' and 'Between 1.0 and 5.0 mm/yr'
 *  Higher stroke indicates fault lines with higher slip_rate
 *  I added two base maps to choose from (Light or Dark) and the two data sets separated as overlays that can be turned on and off independently. A layer control added to the top right corner provided the user interactive interface for the base maps and the overlays
-*  I added a additional pop-up for the faultlines with information on the fault
+*  I added additional pop-up for the faultlines with information on the fault
+
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_dark_popup.png "Level2 Visualization DarkMap")
 
