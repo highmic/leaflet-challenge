@@ -15,7 +15,6 @@ The primary objective of this homework is to demostrate data visualization skill
 *  Pop-ups that provided additional information when a marker is clicked and a legend that provided more context for the map data
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level1_basic.png "Basic Visualization no Popup")
 
-
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level1_basicpopUp.png "Basic Visualization with Popup")
 
 
