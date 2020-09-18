@@ -11,7 +11,7 @@ The primary objective of this homework is to demostrate data visualization skill
 
 ## Level 1 or Basic Visualization
 *  I plotted a Leaflet map with the level 1 data sets based on their longitude and latitude
-*  Markers reflected magnitude of earthquake in their size, and significance of the earthquake in their color with eathquakes with higher magnitude larger in size and those with higher significance darker in color
+*  Markers reflected magnitude of earthquake in their size and significance in their color. Earthquakes with higher magnitude larger in size and those with higher significance darker in color
 *  Added Pop-ups which provided additional information when a marker is clicked and included a legend that provided more context for the map data
 
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level1_basic.png "Basic Visualization no Popup")
