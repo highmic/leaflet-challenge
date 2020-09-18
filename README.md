@@ -26,4 +26,5 @@ The primary objective of this homework is to demostrate data visualization skill
 *  I added additional pop-up for the faultlines with information on the fault
 
 ![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_dark_popup.png "Level2 Visualization DarkMap")
-![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images//level2_street.png "Level2 Visualization StreetMap")
+![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_street.png "Level2 Visualization StreetMap")
+![alt text](https://github.com/highmic/leaflet-challenge/blob/master/images/level2_faultlineOnly.png "Level2 Visualization faultOnly")
